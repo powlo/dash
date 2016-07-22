@@ -1,0 +1,18 @@
+/* Empty. Add your own CSS if you like */
+@font-face {
+    font-family: digital7;
+    src: url(digital-7.ttf);
+}
+
+.background, .background .pane, .background .item, .background .item-complex .item-content{
+    background-color: #000;
+}
+
+.digital {
+    font-family: digital7;
+    color: red;
+}
+
+.fillheight {
+    font-size: 30vh;
+}

@@ -1,0 +1,14 @@
+{
+    "jscodehints.detectedExclusions": [
+        "C:/Users/powlo/workspace/ionic-hud/platforms/android/platform_www/plugins/cordova-plugin-device/www/device.js",
+        "C:/Users/powlo/workspace/ionic-hud/platforms/android/build/intermediates/assets/debug/www/lib/ionic/js/ionic.js",
+        "C:/Users/powlo/workspace/ionic-hud/www/js/controllers.js",
+        "C:/Users/powlo/workspace/headsup/platforms/android/platform_www/cordova-js-src/plugin/android/app.js",
+        "C:/Users/powlo/workspace/headsup/platforms/android/cordova/lib/retry.js",
+        "C:/Users/powlo/workspace/headsup/platforms/android/assets/www/js/controllers.js",
+        "C:/Users/powlo/workspace/headsup/platforms/android/assets/www/js/filters.js",
+        "C:/Users/powlo/workspace/headsup/platforms/android/platform_www/cordova-js-src/android/nativeapiprovider.js",
+        "C:/Users/powlo/workspace/headsup/platforms/android/platform_www/plugins/cordova-plugin-device-motion/www/accelerometer.js",
+        "C:/Users/powlo/workspace/hudsup/platforms/android/cordova/lib/retry.js"
+    ]
+}

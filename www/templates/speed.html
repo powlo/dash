@@ -1,0 +1,15 @@
+<ion-view>
+    <ion-content>
+        <!--ion-item? -->
+        <div class="card">
+            <div class="item">
+                <div class="row">
+                    <div class="col col-center text-center">
+                        <h1 class="{{settings.colour.value}}" style="font-size: 40vmin;">{{coords.speed | digit : 2}}</p></div>
+                    <div class="col col-center text-center"><h1 class="{{settings.colour.value}}" style="font-size: 40vmin;">{{coords.speed | digit : 1}}</p></div>
+                    <div class="col col-center text-center"><h1 class="{{settings.colour.value}}" style="font-size: 40vmin;">{{(coords.speed | digit : 0) || 0}}</h1></div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
