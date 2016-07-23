@@ -40,12 +40,9 @@ angular.module('hudsup.controllers', ['ionic', 'ngCordova'])
     ionic.Platform.ready(function () {
 
         function onSuccess(position) {
-            /*var alertPopup = $ionicPopup.alert({
-                title: 'Success',
-                template: 'Everything is awesome!'
-            });*/
             $scope.coords = position.coords;
-            console.log();
+            $scope.kph = position.coords.speed * 60 * 60 / 1000;
+            $scope.mph = $scope.kph * 0.621371;
         }
 
         function onError(err) {

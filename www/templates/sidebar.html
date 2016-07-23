@@ -14,30 +14,29 @@
 
     <ion-side-menu side="left">
         <ion-header-bar>
-            <h1 class="title">Settings</h1>
+            <h1 class="title"><span class="{{settings.colour.value}}">Settings</span></h1>
         </ion-header-bar>
         <ion-content>
             <ion-list>
                 <label class="item item-input item-select">
                     <div class="input-label">
-                        Units
+                        <span class="{{settings.colour.value}}">Units</span>
                     </div>
                     <select ng-model="settings.units">
-                        <option selected>Kilometres</option>
+                        <option selected><span class="{{settings.colour.value}}">Kilometres</span></option>
                         <option>Miles</option>
                     </select>
                 </label>
                 <label class="item item-input item-select">
                     <div class="input-label">
-                        Colour
+                        <span class="{{settings.colour.value}}">Colour</span>
                     </div>
-                    <select ng-model="settings.colour" ng-options="colour.name for colour in colours">
-                    </select>
+                    <select ng-model="settings.colour" ng-options="colour.name for colour in colours" class="{{settings.colour.value}}"></select>
                 </label>
-                <ion-toggle ng-model="settings.vertical">Flip Vertical</ion-toggle>
-                <ion-toggle ng-model="settings.horizontal">Flip Horizontal</ion-toggle>
-                <ion-toggle ng-model="settings.stayon">Stay On</ion-toggle>
-                
+                <ion-toggle ng-model="settings.vertical"><span class="{{settings.colour.value}}">Flip Vertical</span></ion-toggle>
+                <ion-toggle ng-model="settings.horizontal"><span class="{{settings.colour.value}}">Flip Horizontal</span></ion-toggle>
+                <ion-toggle ng-model="settings.stayon"><span class="{{settings.colour.value}}">Stay On</span></ion-toggle>
+
             </ion-list>
         </ion-content>
     </ion-side-menu>
