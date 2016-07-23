@@ -13,6 +13,10 @@ angular.module('hudsup', ['ionic', 'hudsup.controllers', 'hudsup.filters', 'ngCo
             // org.apache.cordova.statusbar required
             StatusBar.styleDefault();
         }
+
+        if (typeof (window.plugins) !== 'undefined') {
+            window.plugins.insomnia.keepAwake() // keep display on
+        }
     });
 })
 
