@@ -23,7 +23,7 @@
                         <span class="{{settings.colour.value}}">Units</span>
                     </div>
                     <select ng-model="settings.units">
-                        <option selected><span class="{{settings.colour.value}}">Kilometres</span></option>
+                        <option selected><span class="{{settings.colour.value}}" style="{color: red}">Kilometres</span></option>
                         <option>Miles</option>
                     </select>
                 </label>
@@ -33,9 +33,9 @@
                     </div>
                     <select ng-model="settings.colour" ng-options="colour.name for colour in colours" class="{{settings.colour.value}}"></select>
                 </label>
-                <ion-toggle ng-model="settings.vertical"><span class="{{settings.colour.value}}">Flip Vertical</span></ion-toggle>
-                <ion-toggle ng-model="settings.horizontal"><span class="{{settings.colour.value}}">Flip Horizontal</span></ion-toggle>
-                <ion-toggle ng-model="settings.stayon"><span class="{{settings.colour.value}}">Stay On</span></ion-toggle>
+                <ion-toggle ng-model="settings.vertical" toggle-class="toggle-{{settings.colour.value}}"><span class="{{settings.colour.value}}">Flip Vertical</span></ion-toggle>
+                <ion-toggle ng-model="settings.horizontal" toggle-class="toggle-{{settings.colour.value}}"><span class="{{settings.colour.value}}">Flip Horizontal</span></ion-toggle>
+                <ion-toggle ng-model="settings.stayon" toggle-class="toggle-{{settings.colour.value}}"><span class="{{settings.colour.value}}">Stay On</span></ion-toggle>
 
             </ion-list>
         </ion-content>
