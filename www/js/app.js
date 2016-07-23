@@ -1,6 +1,6 @@
-angular.module('hudsup', ['ionic', 'hudsup.controllers', 'hudsup.filters', 'ngCordova'])
+angular.module('hudsup', ['ionic', 'hudsup.controllers', 'hudsup.filters', 'ngCordova', 'ngCordova.plugins.insomnia'])
 
-.run(function ($ionicPlatform) {
+.run(function ($ionicPlatform, $cordovaInsomnia) {
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -14,9 +14,7 @@ angular.module('hudsup', ['ionic', 'hudsup.controllers', 'hudsup.filters', 'ngCo
             StatusBar.styleDefault();
         }
 
-        if (typeof (window.plugins) !== 'undefined') {
-            window.plugins.insomnia.keepAwake() // keep display on
-        }
+        $cordovaInsomnia.keepAwake() // keep display on
     });
 })
 
