@@ -36,16 +36,22 @@ angular.module('hudsup.controllers', ['ionic', 'ngCordova'])
         }
     })
 
-.controller('SpeedCtrl', function ($scope, $ionicPopup, $cordovaGeolocation) {
+.controller('SpeedCtrl', function ($scope, $rootScope, $ionicPopup, $cordovaGeolocation) {
     ionic.Platform.ready(function () {
 
         function onSuccess(position) {
             $scope.coords = position.coords;
-            $scope.kph = position.coords.speed * 60 * 60 / 1000;
-            $scope.mph = $scope.kph * 0.621371;
+            var kph = position.coords.speed * 60 * 60 / 1000;
+            var mph = $scope.kph * 0.621371;
+            if ($rootScope.settings.units == 'Kilometres'){
+                $scope.speed = kph;
+            } else {
+                $scope.speed = mph;
+            }
         }
 
         function onError(err) {
+            //replace with error logging
             var alertPopup = $ionicPopup.alert({
                 title: 'Cordova Error: ' + err.code,
                 template: err.message
