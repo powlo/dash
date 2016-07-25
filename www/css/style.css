@@ -1,18 +1,37 @@
 /* Empty. Add your own CSS if you like */
+
 @font-face {
     font-family: digital7;
     src: url(digital-7.ttf);
 }
 
-.background, .background .pane, .background .item, .background .item-complex .item-content{
+.background,
+.background .pane,
+.background .item,
+.background .item-complex .item-content {
     background-color: #000;
 }
 
 .digital {
     font-family: digital7;
-    color: red;
 }
 
-.fillheight {
-    font-size: 30vh;
+.big {
+    font-size: 40vmin;
+}
+
+.mirror-vertical {
+    -moz-transform: scale(1, -1);
+    -webkit-transform: scale(1, -1);
+    -o-transform: scale(1, -1);
+    -ms-transform: scale(1, -1);
+    transform: scale(1, -1);
+}
+
+.mirror-horizontal {
+    -moz-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    -ms-transform: scale(-1, 1);
+    transform: scale(-1, 1);
 }
