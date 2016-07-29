@@ -16,10 +16,22 @@
     font-family: digital7;
 }
 
-.big {
-    font-size: 40vmin;
+@media all and (orientation: portrait) {
+    .big {
+        font-size: 54vmin;
+    }
 }
 
+@media all and (orientation: landscape) {
+    .big {
+        font-size: 70vmin;
+    }
+}
+
+.card .card.row, .card.col, .card.item {
+    padding : 0px;
+    margin : 0px;
+}
 .mirror-vertical {
     -moz-transform: scale(1, -1);
     -webkit-transform: scale(1, -1);

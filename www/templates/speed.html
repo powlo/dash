@@ -1,15 +1,15 @@
 <ion-view>
     <ion-content>
         <!--ion-item? -->
-        <div class="card">
+        <div class="card" ng-class="{'mirror-vertical' : settings.vertical, 'mirror-horizontal' : settings.horizontal}">
             <div class="item">
                 <div class="row">
                     <div class="col col-center text-center">
-                        <h1 class="{{settings.colour.value}} big digital">{{speed | digit : 2}}</h1></div>
+                        <h1 class="{{settings.colour}} big digital">{{ speed | digit : 2 }}</h1></div>
                     <div class="col col-center text-center">
-                        <h1 class="{{settings.colour.value}} big digital">{{speed | digit : 1}}</h1></div>
+                        <h1 class="{{settings.colour}} big digital">{{ speed | digit : 1 }}</h1></div>
                     <div class="col col-center text-center">
-                        <h1 class="{{settings.colour.value}} big digital">{{(speed | digit : 0) || 0}}</h1></div>
+                        <h1 class="{{settings.colour}} big digital">{{(speed | digit : 0) || 0 }}</h1></div>
                 </div>
             </div>
         </div>

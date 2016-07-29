@@ -13,8 +13,6 @@ angular.module('hudsup', ['ionic', 'hudsup.controllers', 'hudsup.filters', 'ngCo
             // org.apache.cordova.statusbar required
             StatusBar.styleDefault();
         }
-
-        $cordovaInsomnia.keepAwake() // keep display on
     });
 })
 
