@@ -13,11 +13,12 @@ angular.module('hudsup.controllers', ['ionic', 'ngCordova', 'ngCordova.plugins.i
         $scope.colours = ['assertive', 'balanced', 'positive'];
         $scope.units = ['mph', 'kph'];
 
-        $scope.settings = settings;
+        $scope.settings = settings.get();
 
         $ionicPlatform.ready(function () {
-            $scope.toggleinsomnia = function () {
-                if (settings.insomnia) {
+            $scope.settingschange = function () {
+                settings.set($scope.settings);
+                if ($scope.settings.insomnia) {
                     $cordovaInsomnia.keepAwake();
                 } else {
                     $cordovaInsomnia.allowSleepAgain();
@@ -41,12 +42,9 @@ angular.module('hudsup.controllers', ['ionic', 'ngCordova', 'ngCordova.plugins.i
         }
 
         function onError(err) {
-            //replace with error logging
-            var alertPopup = $ionicPopup.alert({
-                title: 'Cordova Error: ' + err.code,
-                template: err.message
-            });
+            console.log('cordovaGeolocation Error: ' + err.code + ' : ' + err.message);
         }
+        
         var watchOptions = {
             timeout: 6000,
             enableHighAccuracy: true // may cause errors if true

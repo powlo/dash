@@ -1,12 +1,21 @@
 angular.module('hudsup.services', [])
     .service('settings', ['$localStorage', function ($localStorage) {
-        return {
-            colour: $localStorage.get('colour', 'assertive'),
-            units: $localStorage.get('units', 'kph'),
-            vertical: $localStorage.get('vertical', false),
-            horizontal: $localStorage.get('horizontal', false),
-            insomnia: $localStorage.get('insomnia', false)
+        var defaults = JSON.stringify({
+            colour : 'assertive',
+            units : 'kph',
+            vertical : false,
+            horizontal : false,
+            insomnia : false
+        });
+        
+        this.get = function (){
+            return $localStorage.getObject('hudsup-settings', defaults);
         }
+        
+        this.set = function(obj){
+            $localStorage.storeObject('hudsup-settings', obj);
+        }
+        
     }])
 
     .factory('$localStorage', ['$window', function ($window) {
