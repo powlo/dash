@@ -1,7 +1,7 @@
 <template>
   <ion-page>
     <ion-content :fullscreen="true">
-      <p>Speed: {{ mph || '---' }}</p>
+      <p id="display">{{ mph || '--' }}</p>
     </ion-content>
   </ion-page>
 </template>
@@ -9,13 +9,8 @@
 <script lang="ts">
 import { IonContent, IonPage } from '@ionic/vue';
 import { Geolocation, Position } from '@capacitor/geolocation';
-
-import { defineComponent } from 'vue'
-
-const watchOptions = {
-  timeout: 6000,
-  enableHighAccuracy: true // may cause errors if true
-};
+import { ScreenOrientation, ScreenOrientationResult } from '@capacitor/screen-orientation';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   components: {
@@ -24,22 +19,38 @@ export default defineComponent({
   },
   data() {
     return {
-      mph: NaN as number
+      mph: NaN as number,
+      dynamicFontSize: '1px' as string,
     }
   },
   methods: {
-    watchCallback(position: Position | null, err: any) {
+    orientationHandler(orientation: ScreenOrientationResult) {
+      // Each char width = .56 x height (NB varies by font)
+      setTimeout(() => {
+        // Although orientation has changed, the reported window dimensions will be wrong.
+        // So we add a timeout to ensure a refresh.
+        // Can be done with vue.nextTick?
+        const computedSize = Math.floor((window.innerWidth / 3) * 1.69)
+        this.dynamicFontSize = Math.min(computedSize, window.innerHeight) + 'px'
+      }, 1000)
+    },
+    positionHandler(position: Position | null, err: any) {
       if (err) {
         console.error(err.message);
         return;
       }
       const speed = position?.coords?.speed
       const kph = speed ? speed * 60 * 60 / 1000 : NaN;
-      this.mph = kph * 0.621371;
+      this.mph = Math.round(kph * 0.621371);
     }
   },
   mounted() {
-    Geolocation.watchPosition(watchOptions, this.watchCallback);
+    const watchOptions = {
+      timeout: 6000,
+      enableHighAccuracy: true // may cause errors if true
+    };
+    Geolocation.watchPosition(watchOptions, this.positionHandler);
+    ScreenOrientation.addListener('screenOrientationChange', this.orientationHandler)
   }
 })
 </script>
@@ -71,5 +82,13 @@ export default defineComponent({
 
 #container a {
   text-decoration: none;
+}
+
+#display {
+  /* needs to be dynamic */
+  font-size: v-bind('dynamicFontSize');
+  margin: 0;
+  line-height: 1;
+  text-align: center;
 }
 </style>
