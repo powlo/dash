@@ -1,7 +1,7 @@
 <template>
   <ion-page>
     <ion-content :fullscreen="true">
-      <p id="display">{{ mph || '--' }}</p>
+      <p id="display" class="mirrorX">{{ mph || '--' }}</p>
     </ion-content>
   </ion-page>
 </template>
@@ -20,10 +20,14 @@ export default defineComponent({
   data() {
     return {
       mph: NaN as number,
-      dynamicFontSize: '1px' as string,
+      dynamicFontSize: this.calculateFontSize() as string,
     }
   },
   methods: {
+    calculateFontSize() {
+      const computedSize = Math.floor((window.innerWidth / 3) * 1.69)
+      return Math.min(computedSize, window.innerHeight) + 'px'
+    },
     orientationHandler(orientation: ScreenOrientationResult) {
       // Each char width = .56 x height (NB varies by font)
       setTimeout(() => {
@@ -31,7 +35,7 @@ export default defineComponent({
         // So we add a timeout to ensure a refresh.
         // Can be done with vue.nextTick?
         const computedSize = Math.floor((window.innerWidth / 3) * 1.69)
-        this.dynamicFontSize = Math.min(computedSize, window.innerHeight) + 'px'
+        this.dynamicFontSize = this.calculateFontSize()
       }, 1000)
     },
     positionHandler(position: Position | null, err: any) {
@@ -85,10 +89,17 @@ export default defineComponent({
 }
 
 #display {
-  /* needs to be dynamic */
   font-size: v-bind('dynamicFontSize');
   margin: 0;
-  line-height: 1;
+  line-height: 100vh;
   text-align: center;
+}
+
+.mirrorY {
+  transform: scaleY(-1);
+}
+
+.mirrorX {
+  transform: scaleX(-1);
 }
 </style>
