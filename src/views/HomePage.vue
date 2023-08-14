@@ -1,7 +1,7 @@
 <template>
   <ion-page>
     <ion-content :fullscreen="true">
-      <p id="display" class="mirrorX">{{ mph || '--' }}</p>
+      <p id="display" class="mirrorY">{{ mph || '--' }}</p>
     </ion-content>
   </ion-page>
 </template>
@@ -50,8 +50,8 @@ export default defineComponent({
   },
   mounted() {
     const watchOptions = {
-      timeout: 6000,
-      enableHighAccuracy: true // may cause errors if true
+      timeout: 500,
+      enableHighAccuracy: true
     };
     Geolocation.watchPosition(watchOptions, this.positionHandler);
     ScreenOrientation.addListener('screenOrientationChange', this.orientationHandler)
