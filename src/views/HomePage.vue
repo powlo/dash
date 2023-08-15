@@ -11,6 +11,7 @@ import { IonContent, IonPage } from '@ionic/vue';
 import { Geolocation, Position } from '@capacitor/geolocation';
 import { ScreenOrientation, ScreenOrientationResult } from '@capacitor/screen-orientation';
 import { defineComponent } from 'vue';
+import { KeepAwake } from '@capacitor-community/keep-awake';
 
 export default defineComponent({
   components: {
@@ -48,7 +49,8 @@ export default defineComponent({
       this.mph = Math.round(kph * 0.621371);
     }
   },
-  mounted() {
+  async mounted() {
+    await KeepAwake.keepAwake()
     const watchOptions = {
       timeout: 500,
       enableHighAccuracy: true
