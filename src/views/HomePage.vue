@@ -26,11 +26,15 @@ export default defineComponent({
   },
   methods: {
     calculateFontSize() {
+      // Each char width = .56 x height (NB varies by font)
       const computedSize = Math.floor((window.innerWidth / 3) * 1.69)
       return Math.min(computedSize, window.innerHeight) + 'px'
     },
     orientationHandler(orientation: ScreenOrientationResult) {
-      // Each char width = .56 x height (NB varies by font)
+      // Although orientation has changed, the reported window dimensions will be wrong.
+      // So we add a timeout to ensure a refresh.
+      // NB a vue.nextTick() won't work here, presumably because of
+      // something more low level.
       setTimeout(() => {
         this.dynamicFontSize = this.calculateFontSize()
       }, 1000)
