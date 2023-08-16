@@ -21,7 +21,7 @@ export default defineComponent({
   data() {
     return {
       mph: NaN as number,
-      dynamicFontSize: this.calculateFontSize() as string,
+      dynamicFontSize: this.calculateFontSize() as string
     }
   },
   methods: {
@@ -32,10 +32,6 @@ export default defineComponent({
     orientationHandler(orientation: ScreenOrientationResult) {
       // Each char width = .56 x height (NB varies by font)
       setTimeout(() => {
-        // Although orientation has changed, the reported window dimensions will be wrong.
-        // So we add a timeout to ensure a refresh.
-        // Can be done with vue.nextTick?
-        const computedSize = Math.floor((window.innerWidth / 3) * 1.69)
         this.dynamicFontSize = this.calculateFontSize()
       }, 1000)
     },
@@ -56,40 +52,18 @@ export default defineComponent({
       enableHighAccuracy: true
     };
     Geolocation.watchPosition(watchOptions, this.positionHandler);
+    // Lock orientation because listener doesn't seem to fire
+    // all the time, resulting in display errors. In future add buttons
+    // to explicitly control orientation and mirroring.
+    ScreenOrientation.lock({ orientation: 'landscape-primary' })
+    // Once the lock takes effect the change event will be generated.
+    // Only then can we calculate the font size required.
     ScreenOrientation.addListener('screenOrientationChange', this.orientationHandler)
   }
 })
 </script>
 
 <style scoped>
-#container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
-}
-
 #display {
   font-size: v-bind('dynamicFontSize');
   margin: 0;
