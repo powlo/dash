@@ -13,11 +13,12 @@ import { ScreenOrientation, ScreenOrientationResult } from '@capacitor/screen-or
 import { KeepAwake } from '@capacitor-community/keep-awake';
 import { ref } from 'vue';
 
-// Do we have to make
 const mph = ref()
 const dynamicFontSize = ref(calculateFontSize())
 
-// await KeepAwake.keepAwake()
+// keepAwake returns a promise but we don't actually care when it's done.
+// Pretending it's synchronous makes the code slightly simpler.
+KeepAwake.keepAwake()
 
 function calculateFontSize() {
   // Each char width = .56 x height (NB varies by font)
